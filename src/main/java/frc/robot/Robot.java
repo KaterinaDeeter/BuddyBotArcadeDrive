@@ -28,7 +28,7 @@ public class Robot extends TimedRobot
   private Joystick m_rightStick; 
 
   private final MotorController m_leftMotor = new PWMSparkMax(0);
-  private final MotorController m_rightMotor = new PWMSparkMax(1);
+  private final MotorController m_rightMotor = new PWMSparkMax(1); //Motor Ids for PWM are O and 1
   //private final MotorController m_leftMotor = new CANSparkMax(1, MotorType.kBrushed);
   //private final MotorController m_rightMotor = new CANSparkMax(2, MotorType.kBrushed);
 
