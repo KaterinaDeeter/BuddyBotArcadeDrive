@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 
-//import edu.wpi.first.wpilibj.PWM;
-//import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax; No PWM Motors are in use
+import edu.wpi.first.wpilibj.PWM;
+import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax; 
 import com.revrobotics.CANSparkMax; 
 import com.revrobotics.CANSparkMaxLowLevel.MotorType; //Low level type is needed to refer to which type of motor it is (brushed/brushless)
 
@@ -27,8 +27,10 @@ public class Robot extends TimedRobot
   private Joystick m_leftStick;
   //private Joystick m_rightStick; This was commented out to switch to arcade drive
 
-  private final MotorController m_leftMotor = new CANSparkMax(1, MotorType.kBrushed);
-  private final MotorController m_rightMotor = new CANSparkMax(2, MotorType.kBrushed);
+  private final MotorController m_leftMotor = new PWMSparkMax(1);
+  private final MotorController m_rightMotor = new PWMSparkMax(2);
+  //private final MotorController m_leftMotor = new CANSparkMax(1, MotorType.kBrushed);
+  //private final MotorController m_rightMotor = new CANSparkMax(2, MotorType.kBrushed);
 
 
   @Override
@@ -37,7 +39,8 @@ public class Robot extends TimedRobot
     // We need to invert one side of the drivetrain so that positive voltages
     // result in both sides moving forward. Depending on how your robot's
     // gearbox is constructed, you might have to invert the left side instead.
-    m_rightMotor.setInverted(true);
+     m_leftMotor.setInverted(true);
+
 
     m_myRobot = new DifferentialDrive(m_leftMotor, m_rightMotor);
     
@@ -50,8 +53,8 @@ public class Robot extends TimedRobot
   public void teleopPeriodic() 
   {
     m_myRobot.tankDrive(m_leftStick.getY(), m_leftStick.getX()); //by altering this code, it became arcade drive rather than tank (initially value was m_rightStick.getY())
-    SmartDashboard.putNumber("Joystick x value", m_leftStick.getX()); //Test code for 01/20/2022. We're attempting to figure out how to get values to display on Shuffleboard
-    SmartDashboard.putNumber("Joystick y value", m_leftStick.getY());
+    SmartDashboard.putNumber("Joystick x value", m_leftStick.getX()); //Test code for 01/20/2022. We're attempting to figure out how to 
+    SmartDashboard.putNumber("Joystick y value", m_leftStick.getY()); //get values to display on Shuffleboard
   }
 }
 
